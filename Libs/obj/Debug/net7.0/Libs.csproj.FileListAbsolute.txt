@@ -1,0 +1,28 @@
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.deps.json
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.runtimeconfig.json
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.dll
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.pdb
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.csproj.AssemblyReference.cache
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.GeneratedMSBuildEditorConfig.editorconfig
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.AssemblyInfoInputs.cache
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.AssemblyInfo.cs
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.csproj.CoreCompileInputs.cache
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.dll
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\refint\Libs.dll
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.pdb
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.genruntimeconfig.cache
+E:\Hutech\Tech\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\ref\Libs.dll
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.deps.json
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.runtimeconfig.json
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.dll
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\bin\Debug\net7.0\Libs.pdb
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.AssemblyInfo.cs
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.dll
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\refint\Libs.dll
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.pdb
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\Libs.genruntimeconfig.cache
+C:\Users\Admin\source\repos\DemoBanCo_20DTHE2 (1)\DemoBanCo_20DTHE2\Libs\obj\Debug\net7.0\ref\Libs.dll
