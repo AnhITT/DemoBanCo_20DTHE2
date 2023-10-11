@@ -91,25 +91,32 @@ namespace DemoBanCo_20DTHE2.Controllers.api
                         }
                     });
                 }
-                var newUser = new IdentityUser()
+                var passwordValidator = new PasswordValidator<IdentityUser>();
+                var result = await passwordValidator.ValidateAsync(_userManager, null, registerRequest.Password);
+
+                if (result.Succeeded)
                 {
-                    UserName = registerRequest.Username
-                };
-                var isCreate = await _userManager.CreateAsync(newUser, registerRequest.Password);
-                if (isCreate.Succeeded)
-                {
-                    // Generate the token
-                    var token = await GenerateJwtToken(newUser);
-                    return Ok(token);
-                }
-                return BadRequest(new AuthResult()
-                {
-                    Result = false,
-                    Error = new List<string>()
+                    var newUser = new IdentityUser()
                     {
-                        "Server Error"
+                        UserName = registerRequest.Username
+                    };
+                    var isCreate = await _userManager.CreateAsync(newUser, registerRequest.Password);
+                    if (isCreate.Succeeded)
+                    {
+                        // Generate the token
+                        var token = await GenerateJwtToken(newUser);
+                        return Ok(token);
                     }
-                });
+                }
+                else
+                {
+                    // Mật khẩu không đủ mạnh
+                    return BadRequest(new AuthResult()
+                    {
+                        Result = false,
+                        Error = result.Errors.Select(error => error.Description).ToList()
+                    });
+                }
             }
             return BadRequest(new AuthResult()
             {
