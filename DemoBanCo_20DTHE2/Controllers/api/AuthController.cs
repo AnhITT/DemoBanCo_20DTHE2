@@ -302,8 +302,7 @@ namespace DemoBanCo_20DTHE2.Controllers.api
                 storedToken.IsUsed = true;
                 storedToken.IsRevoked = true;
 
-                _tokenService.UpdateToken(storedToken);
-                await _tokenService.SaveTokenAsync();
+                await _tokenService.UpdateToken(storedToken);
                 var user = await _userManager.FindByIdAsync(storedToken.UserId);
                 var token = await GenerateJwtToken(user);
 
