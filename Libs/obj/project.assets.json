@@ -3065,11 +3065,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\DemoBanCo_20DTHE2 (1)\\DemoBanCo_20DTHE2\\Libs\\Libs.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Source\\Repos\\DemoBanCo_20DTHE2\\Libs\\Libs.csproj",
       "projectName": "Libs",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\DemoBanCo_20DTHE2 (1)\\DemoBanCo_20DTHE2\\Libs\\Libs.csproj",
+      "projectPath": "C:\\Users\\Admin\\Source\\Repos\\DemoBanCo_20DTHE2\\Libs\\Libs.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\DemoBanCo_20DTHE2 (1)\\DemoBanCo_20DTHE2\\Libs\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Source\\Repos\\DemoBanCo_20DTHE2\\Libs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

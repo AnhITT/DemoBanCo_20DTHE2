@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -17,16 +18,18 @@ namespace DemoBanCo_20DTHE2.Controllers.api
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private TokenService _tokenService;
         private readonly TokenValidationParameters _tokenValidationParameters;
         public AuthController(UserManager<IdentityUser> userManager, IConfiguration configuration, TokenService tokenService,
-            TokenValidationParameters tokenValidationParameters)
+            TokenValidationParameters tokenValidationParameters, RoleManager<IdentityRole> roleManager)
         {
             this._userManager = userManager;
             this._configuration = configuration;
             this._tokenService = tokenService;
             this._tokenValidationParameters = tokenValidationParameters;
+            this._roleManager = roleManager;
         }
         [HttpPost]
         [Route("login")]
@@ -101,6 +104,10 @@ namespace DemoBanCo_20DTHE2.Controllers.api
                         UserName = registerRequest.Username
                     };
                     var isCreate = await _userManager.CreateAsync(newUser, registerRequest.Password);
+                    if (!await _roleManager.RoleExistsAsync("User"))
+                        await _roleManager.CreateAsync(new IdentityRole("User"));
+                    if (await _roleManager.RoleExistsAsync("User"))
+                        await _userManager.AddToRoleAsync(newUser, "User");
                     if (isCreate.Succeeded)
                     {
                         // Generate the token
@@ -131,16 +138,25 @@ namespace DemoBanCo_20DTHE2.Controllers.api
         {
             var jwtTokenHanlder = new JwtSecurityTokenHandler();
             var key = Encoding.UTF8.GetBytes(_configuration.GetSection("JwtConfig:Secret").Value);
-            //Token Description
-            var tokenDescription = new SecurityTokenDescriptor()
+            var claims = new ClaimsIdentity(new[]
             {
-                Subject = new ClaimsIdentity(new[]
-                {
                     new Claim("Id", user.Id),
                     new Claim("Username", user.UserName),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToUniversalTime().ToString()),
-                }),
+            });
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                claims.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
+
+            //Token Description
+            var tokenDescription = new SecurityTokenDescriptor()
+            {
+                Subject = claims,
+                Issuer = _configuration["JwtConfig:ValidIssuer"],
+                Audience = _configuration["JwtConfig:ValidAudience"],
                 //Setting time JWT
                 Expires = DateTime.Now.Add(TimeSpan.Parse(_configuration.GetSection("JwtConfig:ExpiryTimeFrame").Value)),
                 //Expires = DateTime.Now.AddSeconds(20),

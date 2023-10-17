@@ -29,7 +29,7 @@ namespace DemoBanCo_20DTHE2.Controllers.api
             this.hubContext = hubContext;
             this.cachesManage = new CacheManage.CacheManage(this.chessService, this.memoryCache);
         }
-        [Authorize]
+        [Authorize(Policy = "AdminPolicyInsert")]
         [HttpPost]
         [Route("insertRoom")]
         public IActionResult insertRoom(string roomName)

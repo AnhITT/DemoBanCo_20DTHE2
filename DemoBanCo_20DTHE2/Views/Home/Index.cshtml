@@ -131,6 +131,167 @@
                         }
                     }
                 }
+                if (id.indexOf("totdo") >= 0) {
+                    var gapI = Math.abs(nodeEnd.i - nodeStart.i);
+                    var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
+                    if (nodeStart.i < 5) {
+                        // Nếu con tốt chưa qua sông, chỉ được đi thẳng và ăn thẳng theo chiều dọc
+                        if (nodeEnd.i - nodeStart.i != 1 || gapI > 1 || gapJ > 1 || gapI == gapJ == 1) {
+                            return;
+                        }
+                        if (maxtrixNodeEnd.id != "") {
+                            if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                                || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                                return;
+                            }
+                            removeNode = {};
+                            removeNode.id = maxtrixNodeEnd.id;
+                        }
+                    }
+                    else {
+                        // Nếu con tốt đã qua sông, có thể di chuyển cả 2 chiều ngang và dọc, mỗi lần chỉ đi 1 ô và không được lùi lại
+                        if (nodeEnd.i - nodeStart.i == -1 || gapI > 1 || gapJ > 1 || gapI == gapJ == 1) {
+                            return;
+                        }
+                        if (maxtrixNodeEnd.id != "") {
+                            if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                                || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                                return;
+                            }
+                            removeNode = {};
+                            removeNode.id = maxtrixNodeEnd.id;
+                        }
+                    }
+                }
+                if (id.indexOf("totden") >= 0) {
+                    var gapI = Math.abs(nodeEnd.i - nodeStart.i);
+                    var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
+                    if (nodeStart.i > 4) {
+                        // Nếu con tốt chưa qua sông, chỉ được đi thẳng và ăn thẳng theo chiều dọc
+                        if (nodeEnd.i - nodeStart.i != -1 || gapI > 1 || gapJ > 1 || gapI == gapJ == 1) {
+                            return;
+                        }
+                        if (maxtrixNodeEnd.id != "") {
+                            if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                                || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                                return;
+                            }
+                            removeNode = {};
+                            removeNode.id = maxtrixNodeEnd.id;
+                        }
+                    }
+                    else {
+                        // Nếu con tốt đã qua sông, có thể di chuyển cả 2 chiều ngang và dọc, mỗi lần chỉ đi 1 ô và không được lùi lại
+                        if (nodeEnd.i - nodeStart.i == 1 || gapI > 1 || gapJ > 1 || gapI == gapJ == 1) {
+                            return;
+                        }
+                        if (maxtrixNodeEnd.id != "") {
+                            if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                                || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                                return;
+                            }
+                            removeNode = {};
+                            removeNode.id = maxtrixNodeEnd.id;
+                        }
+                    }
+                }
+                if (id.indexOf("phao") >= 0) {
+                    var gapI = Math.abs(nodeEnd.i - nodeStart.i);
+                    var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
+                    var index = 0;
+                    if(nodeEnd.i != nodeStart.i && nodeEnd.j != nodeStart.j){
+                        return;
+                    }
+                    // Kiểm tra quân Pháo di chuyển ngang
+                    if (nodeStart.i == nodeEnd.i) {
+                        if (maxtrixNodeEnd.id != "") {
+                            if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                                || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                                return;
+                            }
+                            for (let j = Math.min(nodeStart.j, nodeEnd.j) + 1; j < Math.max(nodeStart.j, nodeEnd.j); j++) {
+                                if (matrix[nodeStart.i][j].id != "") {
+                                    index++;
+                                }
+                            }
+                            if(index == 1){
+                                removeNode = {};
+                                removeNode.id = maxtrixNodeEnd.id;
+                            }
+                            else{
+                                return;
+                            }
+                        }
+                        else{
+                            // Kiểm tra xem có quân cờ nào ở giữa trên đường đi của quân Pháo
+                            for (let j = Math.min(nodeStart.j, nodeEnd.j) + 1; j < Math.max(nodeStart.j, nodeEnd.j); j++) {
+                                if (matrix[nodeStart.i][j].id != "") {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    // Kiểm tra quân Pháo di chuyển dọc
+                    if (nodeStart.j == nodeEnd.j) {
+                        if (maxtrixNodeEnd.id != "") {
+                            if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                                || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                                return;
+                            }
+                            for (let i = Math.min(nodeStart.i, nodeEnd.i) + 1; i < Math.max(nodeStart.i, nodeEnd.i); i++) {
+                                if (matrix[i][nodeStart.j].id != "") {
+                                    index++;
+                                }
+                            }
+                            if (index == 1) {
+                                removeNode = {};
+                                removeNode.id = maxtrixNodeEnd.id;
+                            }
+                            else {
+                                return;
+                            }
+                        }
+                        else{
+                            // Kiểm tra xem có quân cờ nào ở giữa trên đường đi của quân Pháo
+                            for (let i = Math.min(nodeStart.i, nodeEnd.i) + 1; i < Math.max(nodeStart.i, nodeEnd.i); i++) {
+                                if (matrix[i][nodeStart.j].id != "") {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                if (id.indexOf("xe") >= 0) {
+                    var gapI = Math.abs(nodeEnd.i - nodeStart.i);
+                    var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
+                    if (!(gapI === 0 || gapJ === 0)) {
+                        return;
+                    }
+                    if (maxtrixNodeEnd.id != "") {
+                        if ((id.indexOf("do") >= 0 && maxtrixNodeEnd.id.indexOf("do") >= 0)
+                            || (id.indexOf("den") >= 0 && maxtrixNodeEnd.id.indexOf("den") >= 0)) {
+                            return;
+                        }
+                        removeNode = {};
+                        removeNode.id = maxtrixNodeEnd.id;
+                    }
+                    if (gapI > 0) {
+                        var step = nodeEnd.i > nodeStart.i ? 1 : -1;
+                        for (var i = nodeStart.i + step; i !== nodeEnd.i; i += step) {
+                            if (matrix[i][nodeStart.j].id !== "") {
+                                return;
+                            }
+                        }
+                    } else if (gapJ > 0) {
+                        var step = nodeEnd.j > nodeStart.j ? 1 : -1;
+                        for (var j = nodeStart.j + step; j !== nodeEnd.j; j += step) {
+                            if (matrix[nodeStart.i][j].id !== "") {
+                                return;
+                            }
+                        }
+                    }
+                }
                 var para = [{ id: id, fromi: nodeStart.i, fromj: nodeStart.j, toi: nodeEnd.i, toj: nodeEnd.j }];
                 if (removeNode != null){
                     para.push(removeNode);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "k1vSrhBzExKNSOuS3hRQ8e9acFlAYlMnNWcK4zuhcAobD42FtfvcNcsqkXie+DOnZmpHD+6xu3BaEP8Xg+7i0w==",
+  "dgSpecHash": "FOKOGxeqSUUJ42n+SjmSTH4sFCBmS+OD9OA1CzW0yUi/HnY7kAorL9g4gj9bsaf3R+ySBw5caLxQZppctpnoEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\DemoBanCo_20DTHE2 (1)\\DemoBanCo_20DTHE2\\Libs\\Libs.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\DemoBanCo_20DTHE2\\Libs\\Libs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

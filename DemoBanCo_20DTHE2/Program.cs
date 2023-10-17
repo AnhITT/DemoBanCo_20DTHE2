@@ -1,4 +1,4 @@
-using DemoBanCo_20DTHE2.Hubs;
+﻿using DemoBanCo_20DTHE2.Hubs;
 using DemoBanCo_20DTHE2.Models;
 using Libs;
 using Libs.Services;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,8 +24,10 @@ var tokenValidationParameter = new TokenValidationParameters()
 {
     ValidateIssuerSigningKey = true,
     IssuerSigningKey = new SymmetricSecurityKey(key),
-    ValidateIssuer = false,
-    ValidateAudience = false,
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidAudience = builder.Configuration["JwtConfig:ValidAudience"],
+    ValidIssuer = builder.Configuration["JwtConfig:ValidIssuer"],
     RequireExpirationTime = false,
     ValidateLifetime = true,
     ClockSkew = TimeSpan.Zero
@@ -40,7 +43,24 @@ builder.Services.AddAuthentication(options =>
     jwt.TokenValidationParameters = tokenValidationParameter;
 });
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("BossOnly", policy => policy.RequireRole("Boss"));
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
+    options.AddPolicy("AllRole", policy => policy.RequireAssertion(context =>
+                                            context.User.IsInRole("Boss")
+                                            || context.User.IsInRole("Admin")
+                                            || context.User.IsInRole("User")));
+    options.AddPolicy("All", policy => policy.RequireAssertion(context =>
+                                            context.User.IsInRole("Boss")
+                                            && context.User.IsInRole("Admin")
+                                            && context.User.IsInRole("User")));
+    options.AddPolicy("AdminPolicyInsert", policy => policy.RequireRole("Admin").RequireClaim("Username", "admin"));
+});
 builder.Services.AddSingleton(tokenValidationParameter);
 
 builder.Services.AddTransient<ChessService>();
@@ -65,6 +85,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
